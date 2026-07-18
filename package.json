@@ -2,6 +2,11 @@
   "name": "licosash",
   "version": "0.1.0",
   "private": true,
+  "description": "Licosash — human-first influencer & celebrity marketing. Minimalist premium landing page built with Next.js 15 and GSAP.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rohit-labs/licosash.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
