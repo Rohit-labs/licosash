@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ScrollTrigger } from "@/lib/gsap";
 
 const LINKS = [
   { href: "#about", label: "About" },
@@ -11,18 +12,55 @@ const LINKS = [
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    let last = window.scrollY;
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setOpen(false);
+
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    // Disable all ScrollTrigger instances during the smooth scroll transit
+    const triggers = ScrollTrigger.getAll();
+    triggers.forEach((t) => t.disable(false, false));
+
+    // Smooth scroll to the target section
+    target.scrollIntoView({ behavior: "smooth" });
+
+    // Detect when scrolling has ended using a debounce scroll listener
+    let resolved = false;
+    const resolveScroll = () => {
+      if (resolved) return;
+      resolved = true;
+
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(backupTimeout);
+      clearTimeout(scrollDebounce);
+
+      // Re-enable all ScrollTrigger instances
+      triggers.forEach((t) => {
+        t.enable(true, false);
+      });
+      // Force refresh positions and trigger visible animations immediately on arrival
+      ScrollTrigger.refresh();
+    };
+
+    let scrollDebounce: NodeJS.Timeout;
     const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 24);
-      if (y < 160) setHidden(false);
-      else if (y > last + 4) setHidden(true);
-      else if (y < last - 4) setHidden(false);
-      last = y;
+      clearTimeout(scrollDebounce);
+      scrollDebounce = setTimeout(resolveScroll, 80);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Backup safety timeout in case the browser does not scroll (e.g., already at target)
+    const backupTimeout = setTimeout(resolveScroll, 800);
+  };
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -40,20 +78,29 @@ export default function Nav() {
     <>
       <nav
         className={`nav${scrolled && !open ? " is-scrolled" : ""}${
-          hidden && !open ? " is-hidden" : ""
-        }${open ? " menu-open" : ""}`}
+          open ? " menu-open" : ""
+        }`}
       >
         <div className="nav__inner">
-          <a href="#top" className="nav__logo" onClick={() => setOpen(false)}>
+          <a href="#top" className="nav__logo" onClick={(e) => scrollToSection(e, "#top")}>
             LICOSASH<em>.</em>
           </a>
           <div className="nav__links">
             {LINKS.map((l) => (
-              <a key={l.href} href={l.href} className="nav__link">
+              <a
+                key={l.href}
+                href={l.href}
+                className="nav__link"
+                onClick={(e) => scrollToSection(e, l.href)}
+              >
                 {l.label}
               </a>
             ))}
-            <a href="#talk" className="btn btn--teal nav__cta">
+            <a
+              href="#talk"
+              className="btn btn--teal nav__cta"
+              onClick={(e) => scrollToSection(e, "#talk")}
+            >
               Let&apos;s Talk
             </a>
             <button
@@ -76,7 +123,7 @@ export default function Nav() {
               key={l.href}
               href={l.href}
               className="menu__link"
-              onClick={() => setOpen(false)}
+              onClick={(e) => scrollToSection(e, l.href)}
             >
               {l.label}
             </a>
