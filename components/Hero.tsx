@@ -85,11 +85,13 @@ export default function Hero() {
         <div className="hero__grid">
           <h1 className="hero__title">
             <span className="hero__line">
-              <span className="hero__line-inner">Attention worth</span>
+              <span className="hero__line-inner">
+                Built with <span className="serif--teal">thought</span>
+              </span>
             </span>
             <span className="hero__line">
               <span className="hero__line-inner">
-                remembering<span className="dot">.</span>
+                delivered with <span className="serif--teal">purpose</span><span className="dot">.</span>
               </span>
             </span>
           </h1>

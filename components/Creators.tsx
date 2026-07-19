@@ -30,7 +30,7 @@ export default function Creators() {
     if (off < -n / 2) off += n;
     const abs = Math.abs(off);
     return {
-      transform: `translateX(${off * 62}%) scale(${off === 0 ? 1 : 0.82}) rotateY(${off * -9}deg)`,
+      transform: `translateX(${off * 50}%) scale(${off === 0 ? 1 : 0.82}) rotateY(${off * -9}deg)`,
       opacity: abs > 2 ? 0 : 1 - abs * 0.28,
       zIndex: 20 - abs,
       filter: off === 0 ? "none" : "brightness(0.92)",

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useReveal } from "@/lib/reveal";
 import Media, { type MediaTone } from "./Media";
-import { ArrowRight } from "./icons";
+import { ArrowRight, ChevronLeft, ChevronRight } from "./icons";
 
 const WORKS: {
   type: string;
@@ -73,6 +73,21 @@ export default function FeaturedWork() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
+          <button
+            className="tablet__nav tablet__nav--left"
+            onClick={() => setIndex((i) => (i - 1 + WORKS.length) % WORKS.length)}
+            aria-label="Previous campaign"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <button
+            className="tablet__nav tablet__nav--right"
+            onClick={() => setIndex((i) => (i + 1) % WORKS.length)}
+            aria-label="Next campaign"
+          >
+            <ChevronRight size={18} />
+          </button>
+
           <div className="tablet__screen">
             <div
               className="tablet__track"
