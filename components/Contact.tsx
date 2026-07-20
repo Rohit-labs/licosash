@@ -70,7 +70,7 @@ export default function Contact() {
           </div>
 
           <div className="contact__media" data-reveal data-delay="0.15">
-            <Media tone="pine" label="motion reel / brand video" />
+            <Media src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80" alt="Modern media studio space" />
             <div className="contact__quote">
               Creative. Unique. Made for marketing.
             </div>

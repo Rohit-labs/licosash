@@ -10,12 +10,13 @@ const CREATORS: {
   handle: string;
   niche: string;
   tone: MediaTone;
+  src: string;
 }[] = [
-  { name: "Aarav Mehta", handle: "@aaravcreates", niche: "Tech", tone: "deep" },
-  { name: "Sofia Reyes", handle: "@sofiaglow", niche: "Beauty", tone: "clay" },
-  { name: "Kai Tanaka", handle: "@kaidaily", niche: "Lifestyle", tone: "moss" },
-  { name: "Priya Nair", handle: "@priyaeats", niche: "Food", tone: "sand" },
-  { name: "Leo Whitman", handle: "@leomoves", niche: "Fitness", tone: "pine" },
+  { name: "Aarav Mehta", handle: "@aaravcreates", niche: "Tech", tone: "deep", src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" },
+  { name: "Sofia Reyes", handle: "@sofiaglow", niche: "Beauty", tone: "clay", src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" },
+  { name: "Kai Tanaka", handle: "@kaidaily", niche: "Lifestyle", tone: "moss", src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80" },
+  { name: "Priya Nair", handle: "@priyaeats", niche: "Food", tone: "sand", src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" },
+  { name: "Leo Whitman", handle: "@leomoves", niche: "Fitness", tone: "pine", src: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80" },
 ];
 
 export default function Creators() {
@@ -70,7 +71,7 @@ export default function Creators() {
                 }}
               >
                 <div className="creator-card__img">
-                  <Media tone={c.tone} label="creator" />
+                  <Media src={c.src} alt={c.name} />
                 </div>
                 <div className="creator-card__name">{c.name}</div>
                 <div className="creator-card__meta">

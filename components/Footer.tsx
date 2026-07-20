@@ -1,3 +1,5 @@
+import { InstagramIcon, LinkedInIcon, YouTubeIcon } from "./icons";
+
 const LINKS = [
   { href: "#about", label: "About" },
   { href: "#capabilities", label: "Capabilities" },
@@ -12,8 +14,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer__hero">
           <div className="footer__brand">
-            <span className="footer__brand-mark" />
-            Licosash
+            <img src="/logo_foot.jpeg" alt="Licosash" className="footer__logo-img" />
           </div>
           <p className="footer__punchline">We build campaigns people remember.</p>
           <p className="footer__sub">Enterprise strategy. Creator energy.</p>
@@ -25,14 +26,20 @@ export default function Footer() {
             <p>
               Pan India
               <br />
-              +91 00000 00000
+              <a href="tel:+919833201919">+91 9833201919</a>
               <br />
-              hello@licosash.com
+              <a href="mailto:arvind@licosash.com">arvind@licosash.com</a>
             </p>
             <div className="footer__social">
-              <a href="#" aria-label="LinkedIn">in</a>
-              <a href="#" aria-label="Instagram">ig</a>
-              <a href="#" aria-label="YouTube">yt</a>
+              <a href="#" aria-label="LinkedIn">
+                <LinkedInIcon size={18} />
+              </a>
+              <a href="#" aria-label="Instagram">
+                <InstagramIcon size={18} />
+              </a>
+              <a href="#" aria-label="YouTube">
+                <YouTubeIcon size={18} />
+              </a>
             </div>
           </div>
 

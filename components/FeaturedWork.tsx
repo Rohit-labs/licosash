@@ -11,6 +11,7 @@ const WORKS: {
   req: string;
   brand: string;
   tone: MediaTone;
+  src: string;
 }[] = [
   {
     type: "Finance",
@@ -18,6 +19,7 @@ const WORKS: {
     req: "Drove 4.2M qualified impressions and 38k app installs across a 12-creator finance cohort.",
     brand: "NOVA Pay",
     tone: "deep",
+    src: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80",
   },
   {
     type: "Sports",
@@ -25,6 +27,7 @@ const WORKS: {
     req: "A nationwide matchday activation with athlete creators — 9.1M reach in 72 hours.",
     brand: "ORBIT Athletics",
     tone: "pine",
+    src: "https://images.unsplash.com/photo-1517649763962-0c623266010b?auto=format&fit=crop&w=1200&q=80",
   },
   {
     type: "Beauty",
@@ -32,6 +35,7 @@ const WORKS: {
     req: "Creator-led tutorials that sold out the launch SKU in under two weeks.",
     brand: "Lumen Beauty",
     tone: "moss",
+    src: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80",
   },
   {
     type: "Tech",
@@ -39,6 +43,7 @@ const WORKS: {
     req: "A hero unboxing series that lifted branded search by 61% month over month.",
     brand: "Meridian Devices",
     tone: "clay",
+    src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 
@@ -95,7 +100,7 @@ export default function FeaturedWork() {
             >
               {WORKS.map((w) => (
                 <article className="slide" key={w.title}>
-                  <Media tone={w.tone} label={`${w.type} campaign`} />
+                  <Media src={w.src} alt={w.title} />
                   <div className="slide__shade" />
                   <div className="slide__info">
                     <span className="slide__badge">{w.type}</span>

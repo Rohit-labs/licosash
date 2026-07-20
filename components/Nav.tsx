@@ -83,7 +83,7 @@ export default function Nav() {
       >
         <div className="nav__inner">
           <a href="#top" className="nav__logo" onClick={(e) => scrollToSection(e, "#top")}>
-            LICOSASH<em>.</em>
+            <img src="/logo_nav.jpeg" alt="LICOSASH" className="nav__logo-img" />
           </a>
           <div className="nav__links">
             {LINKS.map((l) => (
@@ -130,7 +130,7 @@ export default function Nav() {
           ))}
         </div>
         <div className="menu__foot">
-          PAN INDIA · HELLO@LICOSASH.COM
+          PAN INDIA · ARVIND@LICOSASH.COM
         </div>
       </div>
     </>

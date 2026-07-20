@@ -20,8 +20,6 @@ const SLIDES = [
   },
 ];
 
-const CHIPS = ["Client-Centric", "Celebrity Access", "Owned Studio", "Craft-Led"];
-
 const pad = (n: number) => String(n).padStart(2, "0");
 
 export default function Hero() {
@@ -55,11 +53,6 @@ export default function Hero() {
             ".hero__media",
             { y: 48, autoAlpha: 0, duration: 1.1, ease: "power3.out" },
             0.7
-          )
-          .from(
-            ".hero__chip",
-            { y: 18, autoAlpha: 0, duration: 0.7, ease: "power3.out", stagger: 0.07 },
-            1.05
           );
 
         gsap.to(".hero__frame .media", {
@@ -116,7 +109,7 @@ export default function Hero() {
 
         <div className="hero__media">
           <div className="hero__frame">
-            <Media tone="deep" label="studio + celebrity campaign still" />
+            <Media src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1400&q=80" alt="Influencer campaign production" />
             <div className="hero__scrim" />
           </div>
           <aside
@@ -151,14 +144,6 @@ export default function Hero() {
             </div>
           </aside>
         </div>
-
-        <ul className="hero__chips">
-          {CHIPS.map((c) => (
-            <li key={c} className="hero__chip">
-              {c}
-            </li>
-          ))}
-        </ul>
       </div>
     </header>
   );

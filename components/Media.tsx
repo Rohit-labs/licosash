@@ -3,9 +3,9 @@ import Image from "next/image";
 export type MediaTone = "deep" | "pine" | "moss" | "clay" | "sand";
 
 const TONES: Record<MediaTone, { bg: string; light: boolean }> = {
-  deep: { bg: "linear-gradient(135deg, #0E2E28 0%, #1E7D6B 100%)", light: false },
-  pine: { bg: "linear-gradient(150deg, #17201D 0%, #173F3A 100%)", light: false },
-  moss: { bg: "linear-gradient(160deg, #2E4F45 0%, #6E8F7C 100%)", light: false },
+  deep: { bg: "linear-gradient(135deg, #022D34 0%, #047384 100%)", light: false },
+  pine: { bg: "linear-gradient(150deg, #17201D 0%, #034A55 100%)", light: false },
+  moss: { bg: "linear-gradient(160deg, #047384 0%, #3598A7 100%)", light: false },
   clay: { bg: "linear-gradient(140deg, #A98F66 0%, #6B5A3C 100%)", light: false },
   sand: { bg: "linear-gradient(140deg, #E7DBC2 0%, #C8B995 100%)", light: true },
 };
@@ -35,7 +35,11 @@ export default function Media({
       aria-hidden={src ? undefined : true}
     >
       {src ? (
-        <Image src={src} alt={alt} fill style={{ objectFit: "cover" }} />
+        <img
+          src={src}
+          alt={alt}
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
       ) : (
         <span className="media__glow" />
       )}
