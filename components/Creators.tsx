@@ -3,7 +3,7 @@
 import { useRef, useState, type CSSProperties } from "react";
 import { useReveal } from "@/lib/reveal";
 import Media, { type MediaTone } from "./Media";
-import { ChevronLeft, ChevronRight } from "./icons";
+import { ChevronLeft, ChevronRight, InstagramIcon } from "./icons";
 
 const CREATORS: {
   name: string;
@@ -11,17 +11,69 @@ const CREATORS: {
   niche: string;
   tone: MediaTone;
   src: string;
+  url: string;
 }[] = [
-  { name: "Aarav Mehta", handle: "@aaravcreates", niche: "Tech", tone: "deep", src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" },
-  { name: "Sofia Reyes", handle: "@sofiaglow", niche: "Beauty", tone: "clay", src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" },
-  { name: "Kai Tanaka", handle: "@kaidaily", niche: "Lifestyle", tone: "moss", src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80" },
-  { name: "Priya Nair", handle: "@priyaeats", niche: "Food", tone: "sand", src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" },
-  { name: "Leo Whitman", handle: "@leomoves", niche: "Fitness", tone: "pine", src: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80" },
+  {
+    name: "Aishwarya",
+    handle: "@_theyogagirl",
+    niche: "Wellness & Health",
+    tone: "deep",
+    src: "/reel_1.jpg",
+    url: "https://www.instagram.com/reel/C80xtUdI1aa/",
+  },
+  {
+    name: "Michael Ajay",
+    handle: "@michaelajayofficial",
+    niche: "Fitness & Lifestyle",
+    tone: "pine",
+    src: "/reel_2.jpg",
+    url: "https://www.instagram.com/reel/C9AYs5iSWxd/",
+  },
+  {
+    name: "Anita Chandhoke",
+    handle: "@anita_chandhoke",
+    niche: "Ayurveda & Living",
+    tone: "clay",
+    src: "/reel_3.jpg",
+    url: "https://www.instagram.com/reel/C9AE0G8SBaX/",
+  },
+  {
+    name: "Gaurav Khanna",
+    handle: "@gauravkhannaofficial",
+    niche: "Entertainment & Style",
+    tone: "moss",
+    src: "/reel_4.jpg",
+    url: "https://www.instagram.com/reel/CsF1JLSA0kg/",
+  },
+  {
+    name: "Abijeet Duddala",
+    handle: "@abijeet11",
+    niche: "Travel & Lifestyle",
+    tone: "sand",
+    src: "/reel_5.jpg",
+    url: "https://www.instagram.com/reel/DGVbQS7pzgy/",
+  },
+  {
+    name: "Kalyani Soudi",
+    handle: "@kalyani_soudi",
+    niche: "Fashion & Trends",
+    tone: "deep",
+    src: "/reel_6.jpg",
+    url: "https://www.instagram.com/reel/DFfQtHtof33/",
+  },
+  {
+    name: "Natasha Luthra",
+    handle: "@thestylechair",
+    niche: "Beauty & Fragrance",
+    tone: "pine",
+    src: "/reel_7.jpg",
+    url: "https://www.instagram.com/reel/DBa1dmxKCpM/",
+  },
 ];
 
 export default function Creators() {
   const scope = useRef<HTMLElement>(null);
-  const [current, setCurrent] = useState(2);
+  const [current, setCurrent] = useState(3);
   useReveal(scope);
 
   const n = CREATORS.length;
@@ -39,19 +91,27 @@ export default function Creators() {
     };
   };
 
+  const handleCardClick = (i: number, url: string) => {
+    if (i === current) {
+      window.open(url, "_blank", "noopener,noreferrer");
+    } else {
+      setCurrent(i);
+    }
+  };
+
   return (
     <section id="creators" className="creators" ref={scope}>
       <div className="container">
         <div className="creators__head">
           <span className="eyebrow" data-reveal>
-            The Right Voices
+            Our Creators
           </span>
           <h2 className="h2" data-reveal data-delay="0.08">
             The right <span className="serif serif--teal">voices.</span>
           </h2>
           <p data-reveal data-delay="0.16">
             Every collaboration begins with finding the right creator for the
-            story.
+            story. Click any creator to watch their Reel on Instagram.
           </p>
         </div>
 
@@ -59,19 +119,32 @@ export default function Creators() {
           <div className="creators__ring">
             {CREATORS.map((c, i) => (
               <div
-                key={c.name}
+                key={c.url}
                 className="creator-card"
                 style={cardStyle(i)}
-                onClick={() => setCurrent(i)}
+                onClick={() => handleCardClick(i, c.url)}
                 role="button"
-                tabIndex={i === current ? -1 : 0}
-                aria-label={`Focus ${c.name}`}
+                tabIndex={0}
+                aria-label={`View ${c.name}'s Reel`}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") setCurrent(i);
+                  if (e.key === "Enter" || e.key === " ") {
+                    handleCardClick(i, c.url);
+                  }
                 }}
               >
                 <div className="creator-card__img">
                   <Media src={c.src} alt={c.name} />
+                  <a
+                    href={c.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="creator-card__watch-badge"
+                    onClick={(e) => e.stopPropagation()}
+                    aria-label={`Open ${c.name}'s Reel in new tab`}
+                  >
+                    <InstagramIcon size={14} />
+                    Watch Reel ↗
+                  </a>
                 </div>
                 <div className="creator-card__name">{c.name}</div>
                 <div className="creator-card__meta">

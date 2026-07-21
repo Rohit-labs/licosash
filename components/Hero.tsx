@@ -97,12 +97,6 @@ export default function Hero() {
               <a href="#talk" className="btn btn--teal">
                 Start your campaign <ArrowRight />
               </a>
-              <a href="#capabilities" className="hero__secondary">
-                <span className="hero__secondary-icon">
-                  <GridIcon />
-                </span>
-                Capabilities
-              </a>
             </div>
           </div>
         </div>

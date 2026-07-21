@@ -6,8 +6,7 @@ import { ScrollTrigger } from "@/lib/gsap";
 const LINKS = [
   { href: "#about", label: "About" },
   { href: "#capabilities", label: "Capabilities" },
-  { href: "#work", label: "Featured Work" },
-  { href: "#creators", label: "Creators" },
+  { href: "#work", label: "Work" },
 ];
 
 export default function Nav() {
@@ -83,7 +82,7 @@ export default function Nav() {
       >
         <div className="nav__inner">
           <a href="#top" className="nav__logo" onClick={(e) => scrollToSection(e, "#top")}>
-            <img src="/logo_nav.jpeg" alt="LICOSASH" className="nav__logo-img" />
+            <img src="/logo_nav.png" alt="LICOSASH™" className="nav__logo-img" />
           </a>
           <div className="nav__links">
             {LINKS.map((l) => (

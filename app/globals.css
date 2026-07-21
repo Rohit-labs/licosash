@@ -306,7 +306,7 @@ img {
   width: auto;
   object-fit: contain;
   display: block;
-  border-radius: 4px;
+  mix-blend-mode: multiply;
 }
 
 .nav__logo em {
@@ -389,6 +389,11 @@ img {
 .nav.menu-open .nav__logo,
 .nav.menu-open .nav__link {
   color: var(--paper);
+}
+
+.nav.menu-open .nav__logo-img {
+  mix-blend-mode: normal;
+  filter: brightness(0) invert(0.92);
 }
 
 .nav.menu-open .nav__burger {
@@ -1281,6 +1286,37 @@ img {
   margin-top: 2px;
 }
 
+.creator-card__watch-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(23, 32, 29, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #f2ece1;
+  padding: 6px 12px;
+  border-radius: var(--pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition:
+    background-color 0.3s var(--ease),
+    color 0.3s var(--ease),
+    transform 0.3s var(--ease);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(242, 236, 225, 0.18);
+  text-decoration: none;
+}
+
+.creator-card:hover .creator-card__watch-badge {
+  background: var(--teal);
+  color: var(--paper);
+  transform: translateY(-2px);
+}
+
 .creators__nav {
   display: flex;
   gap: 14px;
@@ -1630,4 +1666,50 @@ img {
   .menu__link {
     transition-duration: 0.01ms;
   }
+}
+
+/* ---------- Scroll to Top Button ---------- */
+
+.scroll-to-top {
+  position: fixed;
+  bottom: clamp(20px, 3vw, 32px);
+  right: clamp(20px, 3vw, 32px);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--paper);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 30px -5px rgba(4, 115, 132, 0.45), 0 4px 12px rgba(23, 32, 29, 0.15);
+  border: 1px solid rgba(242, 236, 225, 0.25);
+  z-index: 250;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.9);
+  transition:
+    opacity 0.4s var(--ease),
+    visibility 0s linear 0.4s,
+    transform 0.4s var(--ease),
+    background-color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+  cursor: pointer;
+}
+
+.scroll-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  transition:
+    opacity 0.4s var(--ease),
+    visibility 0s linear 0s,
+    transform 0.4s var(--ease),
+    background-color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+}
+
+.scroll-to-top:hover {
+  background: var(--teal-deep);
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 14px 36px -6px rgba(4, 115, 132, 0.55), 0 6px 16px rgba(23, 32, 29, 0.2);
 }

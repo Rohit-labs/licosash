@@ -17,6 +17,7 @@ type MediaProps = {
   src?: string;
   alt?: string;
   className?: string;
+  objectPosition?: string;
 };
 
 export default function Media({
@@ -25,20 +26,27 @@ export default function Media({
   src,
   alt = "",
   className,
+  objectPosition,
 }: MediaProps) {
   const t = TONES[tone];
   return (
     <div
       className={`media${className ? ` ${className}` : ""}`}
-      data-light={t.light || undefined}
+      {...(t.light ? { "data-light": "true" } : {})}
+      {...(src ? {} : { "aria-hidden": "true" })}
       style={src ? undefined : { background: t.bg }}
-      aria-hidden={src ? undefined : true}
     >
       {src ? (
         <img
           src={src}
           alt={alt}
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: objectPosition ?? "center",
+            display: "block",
+          }}
         />
       ) : (
         <span className="media__glow" />

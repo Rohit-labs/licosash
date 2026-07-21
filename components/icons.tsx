@@ -127,3 +127,23 @@ export function YouTubeIcon({ size = 18 }: { size?: number }) {
     </svg>
   );
 }
+
+export function ArrowUp({ size = 16 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M8 13.5v-11M3.5 6.5 8 2l4.5 4.5"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}

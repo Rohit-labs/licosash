@@ -39,9 +39,17 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Licosash — Influencer & Celebrity Marketing",
+  title: "Licosash™ — Influencer & Celebrity Marketing",
   description:
     "Human-first influencer & celebrity marketing that turns reach into trust — and trust into business.",
+  icons: {
+    icon: [
+      { url: "/logo_nav.png", type: "image/png" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    shortcut: "/logo_nav.png",
+    apple: "/logo_nav.png",
+  },
 };
 
 export default function RootLayout({
@@ -51,8 +59,9 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${blackMango.variable} ${newsreader.variable} ${grotesk.variable} ${mono.variable} ${jost.variable}`}
+      suppressHydrationWarning
     >
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }

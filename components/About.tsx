@@ -53,18 +53,18 @@ export default function About() {
         <div className="about__grid">
           <div className="collage">
             <div className="collage__tall">
-              <Media src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Influencer Strategy Team" />
+              <Media src="/about_1.jpg" alt="Creator Leadership" />
             </div>
             <div>
-              <Media src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80" alt="Creator Content Shooting" />
+              <Media src="/about_2.jpg" alt="Content Creation" objectPosition="center 20%" />
             </div>
             <div>
-              <Media src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80" alt="Video Studio Set" />
+              <Media src="/about_3.jpg" alt="Brand Endorsement Campaign" objectPosition="center top" />
             </div>
           </div>
           <div className="about__copy">
             <span className="eyebrow" data-reveal>
-              About Licosash
+              About Licosash™
             </span>
             <h2 className="h2" data-reveal data-delay="0.08">
               We don&apos;t just connect brands with creators. We create

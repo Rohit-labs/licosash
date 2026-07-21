@@ -3,8 +3,7 @@ import { InstagramIcon, LinkedInIcon, YouTubeIcon } from "./icons";
 const LINKS = [
   { href: "#about", label: "About" },
   { href: "#capabilities", label: "Capabilities" },
-  { href: "#work", label: "Featured Work" },
-  { href: "#creators", label: "Creators" },
+  { href: "#work", label: "Work" },
   { href: "#talk", label: "Let's Talk" },
 ];
 
@@ -14,7 +13,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer__hero">
           <div className="footer__brand">
-            <img src="/logo_foot.jpeg" alt="Licosash" className="footer__logo-img" />
+            <img src="/logo_foot.jpeg" alt="Licosash™" className="footer__logo-img" />
           </div>
           <p className="footer__punchline">We build campaigns people remember.</p>
           <p className="footer__sub">Enterprise strategy. Creator energy.</p>
@@ -70,7 +69,7 @@ export default function Footer() {
         </div>
 
         <div className="footer__legal">
-          © Licosash. 2024. All rights reserved by Anecdote Martech.
+          © Licosash™. 2024. All rights reserved by Anecdote Martech.
         </div>
       </div>
     </footer>
