@@ -16,7 +16,7 @@ export default function Contact() {
         <div className="contact__grid">
           <div className="contact__copy">
             <span className="eyebrow" data-reveal>
-              Let&apos;s Talk
+              Contact Us
             </span>
             <h2 className="h2" data-reveal data-delay="0.08" style={{ marginTop: 18 }}>
               Let&apos;s build something{" "}
@@ -63,7 +63,7 @@ export default function Contact() {
                   />
                 </div>
                 <button type="submit" className="btn btn--dark">
-                  Let&apos;s Talk <ArrowRight />
+                  Send Message <ArrowRight />
                 </button>
               </form>
             )}

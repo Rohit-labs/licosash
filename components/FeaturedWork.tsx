@@ -9,41 +9,46 @@ const WORKS: {
   type: string;
   title: string;
   req: string;
-  brand: string;
   tone: MediaTone;
   src: string;
+  stat1: { value: string; label: string };
+  stat2: { value: string; label: string };
 }[] = [
   {
-    type: "Finance",
-    title: "Scaling a Fintech Launch",
-    req: "Drove 4.2M qualified impressions and 38k app installs across a 12-creator finance cohort.",
-    brand: "NOVA Pay",
+    type: "Audience & Consumption",
+    title: "A Nation Hooked on Creator Content",
+    req: "Over 650 Million Indian users actively consume content daily, turning creators into the most direct distribution channel for brands.",
     tone: "deep",
-    src: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80",
+    src: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80",
+    stat1: { value: "~650 Mn", label: "Active Consumers" },
+    stat2: { value: "55-60 Min", label: "Avg. Daily Time Spent" },
   },
   {
-    type: "Sports",
-    title: "Game Day Takeover",
-    req: "A nationwide matchday activation with athlete creators — 9.1M reach in 72 hours.",
-    brand: "ORBIT Athletics",
+    type: "Creator Rise",
+    title: "Authentic Voices Powering Engagement",
+    req: "The creator pool has tripled since 2020, with high-converting Nano and Micro creators building deep trust and exceptional engagement rates.",
     tone: "pine",
-    src: "https://images.unsplash.com/photo-1517649763962-0c623266010b?auto=format&fit=crop&w=1200&q=80",
+    src: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80",
+    stat1: { value: "~4.5 Mn", label: "Creators (3X since 2020)" },
+    stat2: { value: "Nano/Micro", label: "Highest Engagement Rates" },
   },
   {
-    type: "Beauty",
-    title: "The Glow Edit",
-    req: "Creator-led tutorials that sold out the launch SKU in under two weeks.",
-    brand: "Lumen Beauty",
+    type: "Market Economy",
+    title: "A Multi-Crore Advertising Shift",
+    req: "Growing at a rapid 22% CAGR, creator marketing spends are led by e-Commerce and FMCG brands seeking high conversions.",
     tone: "moss",
-    src: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80",
+    src: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80",
+    stat1: { value: "₹3,000 Cr", label: "Market Size (22% CAGR)" },
+    stat2: { value: "23% + 19%", label: "e-Commerce & FMCG Share" },
   },
   {
-    type: "Tech",
-    title: "Unboxed & Unfiltered",
-    req: "A hero unboxing series that lifted branded search by 61% month over month.",
-    brand: "Meridian Devices",
+    type: "Format & Ecosystem",
+    title: "Regional Formats and State Backing",
+    req: "Culturally authentic regional narratives and short formats drive instant purchase intent, backed by major government initiatives.",
     tone: "clay",
     src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
+    stat1: { value: "₹8,545 Cr", label: "Govt. Innovation Support" },
+    stat2: { value: "Short Format", label: "Highest Purchase Influence" },
   },
 ];
 
@@ -64,10 +69,10 @@ export default function FeaturedWork() {
       <div className="container">
         <div className="work__head">
           <span className="eyebrow eyebrow--dark" data-reveal>
-            Featured Work
+            Creator Economy
           </span>
           <h2 data-reveal data-delay="0.08">
-            Campaigns that <span className="serif">performed.</span>
+            The Rise of <span className="serif">Creator Economy</span> in India.
           </h2>
         </div>
 
@@ -106,11 +111,15 @@ export default function FeaturedWork() {
                     <span className="slide__badge">{w.type}</span>
                     <h3>{w.title}</h3>
                     <p>{w.req}</p>
-                    <div className="slide__meta">
-                      <span>{w.brand}</span>
-                      <a href="#work" onClick={(e) => e.preventDefault()}>
-                        Watch the reel <ArrowRight size={13} />
-                      </a>
+                    <div className="slide__stats-row">
+                      <div className="slide__stat">
+                        <span className="slide__stat-val">{w.stat1.value}</span>
+                        <span className="slide__stat-lbl">{w.stat1.label}</span>
+                      </div>
+                      <div className="slide__stat">
+                        <span className="slide__stat-val">{w.stat2.value}</span>
+                        <span className="slide__stat-lbl">{w.stat2.label}</span>
+                      </div>
                     </div>
                   </div>
                 </article>

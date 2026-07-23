@@ -6,7 +6,7 @@ import { ScrollTrigger } from "@/lib/gsap";
 const LINKS = [
   { href: "#about", label: "About" },
   { href: "#capabilities", label: "Capabilities" },
-  { href: "#work", label: "Work" },
+  { href: "#creators", label: "Work" },
 ];
 
 export default function Nav() {

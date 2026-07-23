@@ -3,7 +3,7 @@
 import { useRef, useState, type CSSProperties } from "react";
 import { useReveal } from "@/lib/reveal";
 import Media, { type MediaTone } from "./Media";
-import { ChevronLeft, ChevronRight, InstagramIcon } from "./icons";
+import { ChevronLeft, ChevronRight } from "./icons";
 
 const CREATORS: {
   name: string;
@@ -13,6 +13,14 @@ const CREATORS: {
   src: string;
   url: string;
 }[] = [
+  {
+    name: "Neil Nitin Mukesh",
+    handle: "@neilnitinmukesh",
+    niche: "Cinema & Advocacy",
+    tone: "clay",
+    src: "/reel_8.jpg",
+    url: "https://www.instagram.com/p/DHxsCKMMo_D/",
+  },
   {
     name: "Aishwarya",
     handle: "@_theyogagirl",
@@ -73,8 +81,12 @@ const CREATORS: {
 
 export default function Creators() {
   const scope = useRef<HTMLElement>(null);
-  const [current, setCurrent] = useState(3);
+  const [current, setCurrent] = useState(0);
   useReveal(scope);
+
+  // Swipe gesture tracking refs
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
 
   const n = CREATORS.length;
   const cardStyle = (i: number): CSSProperties => {
@@ -99,23 +111,57 @@ export default function Creators() {
     }
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+    const diffX = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 50; // Threshold distance in pixels
+
+    if (diffX > minSwipeDistance) {
+      // Swiped left -> Next card
+      setCurrent((c) => (c + 1) % n);
+    } else if (diffX < -minSwipeDistance) {
+      // Swiped right -> Previous card
+      setCurrent((c) => (c - 1 + n) % n);
+    }
+
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
   return (
     <section id="creators" className="creators" ref={scope}>
       <div className="container">
         <div className="creators__head">
           <span className="eyebrow" data-reveal>
-            Our Creators
+            Featured Work
           </span>
           <h2 className="h2" data-reveal data-delay="0.08">
             The right <span className="serif serif--teal">voices.</span>
           </h2>
           <p data-reveal data-delay="0.16">
-            Every collaboration begins with finding the right creator for the
-            story. Click any creator to watch their Reel on Instagram.
+            Every collaboration begins with finding the right creator.
+            <br />
+            Click any creator to watch their Reel on Instagram.
           </p>
         </div>
 
-        <div className="creators__stage" data-reveal data-delay="0.2">
+        <div
+          className="creators__stage"
+          data-reveal
+          data-delay="0.2"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <div className="creators__ring">
             {CREATORS.map((c, i) => (
               <div
@@ -134,17 +180,6 @@ export default function Creators() {
               >
                 <div className="creator-card__img">
                   <Media src={c.src} alt={c.name} />
-                  <a
-                    href={c.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="creator-card__watch-badge"
-                    onClick={(e) => e.stopPropagation()}
-                    aria-label={`Open ${c.name}'s Reel in new tab`}
-                  >
-                    <InstagramIcon size={14} />
-                    Watch Reel ↗
-                  </a>
                 </div>
                 <div className="creator-card__name">{c.name}</div>
                 <div className="creator-card__meta">

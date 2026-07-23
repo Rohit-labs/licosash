@@ -6,34 +6,28 @@ import Media, { type MediaTone } from "./Media";
 
 const CAPS: { title: string; body: string; tone: MediaTone; src: string }[] = [
   {
-    title: "Influencer Marketing",
-    body: "Full-funnel creator campaigns — from strategy and casting to briefing, delivery and reporting — engineered to earn attention and move metrics.",
+    title: "Extended Arm",
+    body: "LICOSASH™ acts as your dedicated influencer desk, managing end-to-end creator campaigns (scouting, negotiation, execution, reporting), engineered to earn attention and move metrics.",
     tone: "deep",
     src: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1000&q=80",
   },
   {
-    title: "Celebrity Collaborations",
-    body: "Access to A-list talent and rising stars, with negotiation, rights and rollout handled end to end.",
+    title: "Expertise On-demand",
+    body: "We bring niche expertise in influencer trends, categories, and pricing — knowledge that would otherwise take time to build in-house via a 'speed-dial access' to A-list talents and rising stars spanning diverse niches and types.",
     tone: "pine",
     src: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=1000&q=80",
   },
   {
-    title: "Campaign Strategy",
-    body: "Platform-native strategy grounded in data — the right message, format and creator mix for every objective.",
+    title: "Scalability & Flexibility",
+    body: "Whether it's one-off influencer seeding or a large-scale campaign, LICOSASH™ adapts instantly — something an in-house setup cannot do without recurring costs.",
     tone: "moss",
     src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80",
   },
   {
-    title: "Content Production",
-    body: "In-house and outsourced studio support for pre- and post-production, editing, and scroll-stopping creative.",
+    title: "Addressing creative fatigue",
+    body: "Sync the brand objectives by leveraging effective storytelling techniques by understanding the audience, being authentic and adopting best practices.",
     tone: "clay",
     src: "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=1000&q=80",
-  },
-  {
-    title: "Brand Partnerships",
-    body: "Long-term ambassador programs and co-created series that turn one campaign into an ongoing relationship.",
-    tone: "sand",
-    src: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1000&q=80",
   },
 ];
 
@@ -50,8 +44,7 @@ export default function Capabilities() {
             Our Capabilities
           </span>
           <h2 className="h2" data-reveal data-delay="0.08">
-            What we <span className="serif serif--teal">do</span> — end-to-end
-            influencer marketing.
+            Scope and <span className="serif serif--teal">Deliverables.</span>
           </h2>
         </div>
         <div className="caps__grid">
@@ -62,6 +55,7 @@ export default function Capabilities() {
                   className="cap__row"
                   aria-expanded={i === active}
                   onClick={() => setActive(i)}
+                  suppressHydrationWarning
                 >
                   <span className="cap__title">{c.title}</span>
                   <span className="cap__icon" aria-hidden="true" />

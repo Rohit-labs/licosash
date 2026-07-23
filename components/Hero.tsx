@@ -90,8 +90,8 @@ export default function Hero() {
           </h1>
           <div>
             <p className="hero__lead">
-              Human-first influencer &amp; celebrity marketing that turns reach
-              into trust — and trust into business.
+              Great stories deserve smart strategy, transparent budgeting, and
+              honest execution. We believe people connect with people, not promotions.
             </p>
             <div className="hero__actions">
               <a href="#talk" className="btn btn--teal">
@@ -125,12 +125,14 @@ export default function Hero() {
                   onClick={() =>
                     setSlide((s) => (s - 1 + SLIDES.length) % SLIDES.length)
                   }
+                  suppressHydrationWarning
                 >
                   <ChevronLeft />
                 </button>
                 <button
                   aria-label="Next highlight"
                   onClick={() => setSlide((s) => (s + 1) % SLIDES.length)}
+                  suppressHydrationWarning
                 >
                   <ChevronRight />
                 </button>
