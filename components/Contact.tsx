@@ -8,6 +8,8 @@ import { ArrowRight } from "./icons";
 export default function Contact() {
   const scope = useRef<HTMLElement>(null);
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   useReveal(scope);
 
   return (
@@ -35,9 +37,37 @@ export default function Contact() {
                 className="contact__form"
                 data-reveal
                 data-delay="0.2"
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
-                  setSent(true);
+                  setLoading(true);
+                  setErrorMsg("");
+
+                  const formData = new FormData(e.currentTarget);
+                  const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+                  if (!accessKey) {
+                    setErrorMsg("Form submission is currently misconfigured (missing access key).");
+                    setLoading(false);
+                    return;
+                  }
+
+                  formData.append("access_key", accessKey);
+
+                  try {
+                    const response = await fetch("https://api.web3forms.com/submit", {
+                      method: "POST",
+                      body: formData,
+                    });
+                    const res = await response.json();
+                    if (res.success) {
+                      setSent(true);
+                    } else {
+                      setErrorMsg(res.message || "Something went wrong. Please try again.");
+                    }
+                  } catch (err) {
+                    setErrorMsg("Failed to send message. Please check your connection.");
+                  } finally {
+                    setLoading(false);
+                  }
                 }}
               >
                 <div className="field">
@@ -62,9 +92,14 @@ export default function Contact() {
                     aria-label="What are we building together?"
                   />
                 </div>
-                <button type="submit" className="btn btn--dark">
-                  Send Message <ArrowRight />
+                <button type="submit" className="btn btn--dark" disabled={loading}>
+                  {loading ? "Sending..." : "Send Message"} <ArrowRight />
                 </button>
+                {errorMsg && (
+                  <p className="contact__error" style={{ color: "#E05A47", marginTop: 16, fontSize: "0.9rem" }}>
+                    {errorMsg}
+                  </p>
+                )}
               </form>
             )}
           </div>
