@@ -590,6 +590,14 @@ img {
 .hero__frame .media {
   inset: -12% 0;
   will-change: transform;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+}
+
+.hero__frame .media.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .hero__scrim {

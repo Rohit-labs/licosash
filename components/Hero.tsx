@@ -9,14 +9,17 @@ const SLIDES = [
   {
     label: "Celebrity Campaigns",
     text: "Placing our clients' needs at the heart of every project — ensuring reach that actually earns trust.",
+    image: "/hero_celebrity.png",
   },
   {
     label: "Owned 20+ Set Studio",
     text: "From podcast sets to wedding backdrops — shot on our sets, on our clock, no rental scramble.",
+    image: "/hero_studio.png",
   },
   {
     label: "18,000+ Vetted Creators",
     text: "The right voice for every brand truth — matched by fit, not just follower count.",
+    image: "/hero_creators.png",
   },
 ];
 
@@ -103,7 +106,14 @@ export default function Hero() {
 
         <div className="hero__media">
           <div className="hero__frame">
-            <Media src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1400&q=80" alt="Influencer campaign production" />
+            {SLIDES.map((s, idx) => (
+              <Media
+                key={idx}
+                src={s.image}
+                alt={s.label}
+                className={idx === slide ? "active" : ""}
+              />
+            ))}
             <div className="hero__scrim" />
           </div>
           <aside
